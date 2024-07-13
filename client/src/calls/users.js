@@ -32,8 +32,3 @@ export const GetCurrentUser = async () =>{
        console.log(error)
     }
 }
-
-
-
-
-

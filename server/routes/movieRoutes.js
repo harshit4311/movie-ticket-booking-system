@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const Movie = require('../models/movieModel')
 
-// Add a Movi
-
+// Add a Movie
 router.post('/add-movie' , async (req , res)=>{
     try {
          const newMovie = new Movie(req.body)
@@ -38,9 +37,6 @@ router.get('/get-all-movies' , async(req , res)=>{
         });
     }
 })
-
-
-// Update a movie
 
 // Update a movie
 router.put('/update-movie', async (req, res) => {

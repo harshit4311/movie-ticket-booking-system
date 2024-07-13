@@ -5,7 +5,6 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const jwt = require('jsonwebtoken')
 
 
-
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
@@ -58,9 +57,9 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    const token = jwt.sign({userId : user._id} ,process.env.JWT_SECRET , {expiresIn:"1d"}   )
-
-    
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
 
     res.send({
       success: true,
@@ -72,24 +71,14 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get('/get-current-user',authMiddleware , async(req , res)=>{
-  try {
-    const user = await User.findById(req.body.userId).select('-password')
+router.get("/get-current-user", authMiddleware, async (req, res) => {
+  const user = await User.findById(req.body.userId).select("-password");
+
   res.send({
-    success : true,
-    message : 'You are Authorized',
-    data :user
-  })
-    
-  } catch (error) {
-    res.send({
-      success : false,
-      message : 'not authorized'
-    })
-  }
-  
-
-
-} )
+    success: true,
+    message: 'You are authorized to go to the protected route!',
+    data: user
+   })
+});
 
 module.exports = router;
