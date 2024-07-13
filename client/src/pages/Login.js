@@ -8,6 +8,9 @@ import { LoginUser } from '../calls/users';
 
 function Login() {
   const navigate = useNavigate()
+
+
+
   const onFinish = async (values)=>{
     try {
       const response = await LoginUser(values);
@@ -24,7 +27,14 @@ function Login() {
    
   }
 
-  
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      navigate('/')
+    }
+  } , [])
+
+
 
  
   return (
